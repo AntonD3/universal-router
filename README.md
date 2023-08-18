@@ -12,7 +12,7 @@ Our flexible command style allows us to provide users with:
 - Purchases of NFTs across 8 marketplaces
 - Partial fills of trades
 - Wrapping and Unwrapping of ETH
-- Time-bound, signature controlled token approvals using [Permit2](https://github.com/Uniswap/permit2)
+- Time-bound, signature controlled token approvals using [Permit2](https://github.com/uniswap-zksync/era-permit2)
 
 Transactions are encoded using a string of commands, allowing users to have maximum flexibility over what they want to perform. With all of these features available in a single transaction, the possibilities available to users are endless
 
@@ -20,7 +20,7 @@ Transactions are encoded using a string of commands, allowing users to have maxi
 
 The Universal Router codebase consists of the `UniversalRouter` contract, and all of its dependencies. The purpose of the `UniversalRouter` is to allow users to unify Uniswap ERC20 swaps (on V2 and V3) with NFT purchases across 8 marketplaces, in a single transaction.
 
-`UniversalRouter` integrates with [Permit2](https://github.com/Uniswap/permit2), to enable users to have more safety, flexibility, and control over their ERC20 token approvals.
+`UniversalRouter` integrates with [Permit2](https://github.com/uniswap-zksync/era-permit), to enable users to have more safety, flexibility, and control over their ERC20 token approvals.
 
 ### UniversalRouter command encoding
 
@@ -150,15 +150,7 @@ Developer documentation to give a detailed explanation of the inputs for every c
 
 ### To Compile and Run Tests
 
-1. Create `.env` file with api key
-
-```
-INFURA_API_KEY='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-```
-
-2. Run yarn commands to compile and test
-
-### To Run Hardhat Tests
+Run yarn commands to compile and test
 
 ```console
 yarn install
@@ -173,74 +165,23 @@ yarn test
 yarn test:gas
 ```
 
-### To Run Forge Tests
-
-```console
-forge install
-forge build
-forge test
-```
 ## Integrating
-
-1. Install the latest version of `@uniswap/universal-router` package.
-2. Add git submodules for contracts that aren't a node package. Make sure there's an empty `.gitmodules` file. Then run:
-    ```bash
-      git submodule add https://github.com/transmissions11/solmate
-      git submodule add https://github.com/Uniswap/permit2
-    ```
-3. You should now be able to import contracts from universal-router and compile.
-
-## Contributions
-Before you submit your PR, run all of the following and commit the changes:
-```bash
-# make sure all tests pass this will also update gas snapshots
-yarn test:all
-
-# lint code
-yarn prettier:fix
-```
-
-If you are only concerned with investigating gas diffs, you can run this command to only run gas tests
-```bash
-yarn test:gas
-```
 
 ### To Deploy
 
 Fill out parameters in `script/deployParameters/<network>.json`
 
 ```console
-forge script --broadcast \
---rpc-url <RPC-URL> \
+yarn hardhat --network <NETWORK> deploy \
 --private-key <PRIVATE_KEY> \
---sig 'run(string)' \
-script/DeployUniversalRouter.s.sol:DeployUniversalRouter \
-<pathToJSON>
+--params <pathToJSON>
 ```
 
 ### To Deploy and Verify
 
 ```console
-forge script --broadcast \
---rpc-url <RPC-URL> \
---private-key <PRIVATE-KEY> \
---sig 'run(string)' \
-script/DeployUniversalRouter.s.sol:DeployUniversalRouter \
-<pathToJSON> \
---chain-id <CHAIN-ID> \
---etherscan-api-key <ETHERSCAN-API-KEY> \
---verify
-```
-
-#### To Deploy Permit2 Alongside UniversalRouter
-
-Fill out parameters in `scripts/deployParameters/<network>.json`
-
-```console
-forge script --broadcast \
---rpc-url <RPC-URL> \
+yarn hardhat --network <NETWORK> deploy \
 --private-key <PRIVATE_KEY> \
---sig 'runAndDeployPermit2(string)' \
-script/DeployUniversalRouter.s.sol:DeployUniversalRouter \
-<pathToJSON>
+--params <pathToJSON> \
+--verify
 ```

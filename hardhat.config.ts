@@ -1,3 +1,4 @@
+// The original version of the `permit2` is used. Only change in the `era-permit2` Permit2 address, should not affect `universal-router`
 import 'hardhat-typechain'
 import '@nomiclabs/hardhat-ethers'
 import '@matterlabs/hardhat-zksync-deploy'
@@ -9,11 +10,11 @@ import deployZkSyncEra from './script/deploy_zksync_era'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const ZK_SYNC_LOCALHOST = "http://localhost:8011"
+const ZKSYNC_LOCALHOST = "http://localhost:8011"
 // This variable is used by the hardhat-zksync-chai-matchers
-process.env.ZKSYNC_WEB3_API_URL = ZK_SYNC_LOCALHOST
+process.env.ZKSYNC_WEB3_API_URL = ZKSYNC_LOCALHOST
 
-task('deployZkSyncEra')
+task('deploy')
   .addParam('privateKey', 'Private key used to deploy')
   .addParam('params', 'Path to params json')
   .addFlag('verify', 'Whether verify the contracts')
@@ -39,7 +40,7 @@ export default {
   },
   networks: {
     zkSyncLocalhost: {
-      url: process.env.ZKSYNC_WEB3_API_URL,
+      url: ZKSYNC_LOCALHOST,
       ethNetwork: '',
       zksync: true,
     },
