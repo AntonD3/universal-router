@@ -1,6 +1,6 @@
 # Universal Router
 
-Please read the [Contributions](https://github.com/Uniswap/universal-router#contributions) section before submitting a Pull Request.
+Please read the [Contributions](https://github.com/uniswap-zksync/era-universal-router#contributions) section before submitting a Pull Request.
 
 ## High-Level Overview
 
@@ -150,6 +150,8 @@ Developer documentation to give a detailed explanation of the inputs for every c
 
 ### To Compile and Run Tests
 
+The tests are running against the [test node](https://github.com/matter-labs/era-test-node).
+
 Run yarn commands to compile and test
 
 ```console
@@ -165,7 +167,20 @@ yarn test
 yarn test:gas
 ```
 
-## Integrating
+## Contributions
+Before you submit your PR, run all of the following and commit the changes:
+```bash
+# make sure all tests pass this will also update gas snapshots
+yarn test:all
+
+# lint code
+yarn prettier:fix
+```
+
+If you are only concerned with investigating gas diffs, you can run this command to only run gas tests
+```bash
+yarn test:gas
+```
 
 ### To Deploy
 

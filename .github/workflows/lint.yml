@@ -25,16 +25,5 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
-        with:
-          version: nightly
-
-      - name: Run Forge build
-        run: |
-          forge --version
-          forge build --sizes
-        id: build
-
       - name: Run linter
         run: yarn run prettier

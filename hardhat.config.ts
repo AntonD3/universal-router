@@ -10,9 +10,9 @@ import deployZkSyncEra from './script/deploy_zksync_era'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const ZKSYNC_LOCALHOST = "http://localhost:8011"
+const ZKSYNC_TEST_NODE_URL = "http://localhost:8011"
 // This variable is used by the hardhat-zksync-chai-matchers
-process.env.ZKSYNC_WEB3_API_URL = ZKSYNC_LOCALHOST
+process.env.ZKSYNC_WEB3_API_URL = ZKSYNC_TEST_NODE_URL
 
 task('deploy')
   .addParam('privateKey', 'Private key used to deploy')
@@ -22,25 +22,13 @@ task('deploy')
     await deployZkSyncEra(taskArgs)
   })
 
-const DEFAULT_COMPILER_SETTINGS = {
-  version: '0.8.17',
-  settings: {
-    viaIR: true,
-    evmVersion: 'istanbul',
-    optimizer: {
-      enabled: true,
-      runs: 1_000_000,
-    },
-  },
-}
-
 export default {
   paths: {
     sources: './contracts',
   },
   networks: {
-    zkSyncLocalhost: {
-      url: ZKSYNC_LOCALHOST,
+    zkSyncTestNode: {
+      url: ZKSYNC_TEST_NODE_URL,
       ethNetwork: '',
       zksync: true,
     },
@@ -57,12 +45,12 @@ export default {
       verifyURL: 'https://zksync2-mainnet-explorer.zksync.io/contract_verification',
     },
   },
-  defaultNetwork: 'zkSyncLocalhost',
+  defaultNetwork: 'zkSyncTestNode',
   namedAccounts: {
     deployer: 0,
   },
   solidity: {
-    compilers: [DEFAULT_COMPILER_SETTINGS],
+    version: '0.8.17',
   },
   zksolc: {
     version: "1.3.13",

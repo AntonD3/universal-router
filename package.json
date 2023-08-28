@@ -1,6 +1,6 @@
 {
-  "name": "@uniswap-zksync/era-universal-router",
-  "description": "Smart contracts for Universal Router",
+  "name": "era-universal-router",
+  "description": "Smart contracts for Universal Router forked for zkSync Era",
   "license": "GPL-2.0-or-later",
   "publishConfig": {
     "access": "public"
@@ -22,18 +22,18 @@
     "contracts/libraries",
     "contracts",
     "typechain",
-    "artifacts/contracts/**/*.json",
-    "!artifacts/contracts/**/*.dbg.json",
-    "!artifacts/contracts/test/**/*",
-    "!artifacts/contracts/base/**/*"
+    "artifacts-zk/contracts/**/*.json",
+    "!artifacts-zk/contracts/**/*.dbg.json",
+    "!artifacts-zk/contracts/test/**/*",
+    "!artifacts-zk/contracts/base/**/*"
   ],
   "engines": {
     "node": ">=14"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "4.7.0",
     "@uniswap/v2-core": "https://github.com/uniswap-zksync/era-uniswap-v2-core.git#v1.0.1-zksync-era",
-    "@uniswap/v3-core": "https://github.com/uniswap-zksync/era-uniswap-v3-core.git#v1.0.0-zksync-era",
-    "@openzeppelin/contracts": "4.7.0"
+    "@uniswap/v3-core": "https://github.com/uniswap-zksync/era-uniswap-v3-core.git#v1.0.0-zksync-era"
   },
   "devDependencies": {
     "@matterlabs/hardhat-zksync-chai-matchers": "^0.1.3",
@@ -55,7 +55,7 @@
     "@uniswap/v3-sdk": "^3.8.3",
     "chai": "^4.3.4",
     "ethereum-waffle": "^3.0.2",
-    "ethers": "^5.0.8",
+    "ethers": "^5.7.0",
     "hardhat": "^2.6.8",
     "hardhat-typechain": "^0.3.5",
     "mocha-chai-jest-snapshot": "^1.1.0",
