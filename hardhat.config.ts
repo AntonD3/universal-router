@@ -1,7 +1,6 @@
 // The original version of the `permit2` is used. Only change in the `era-permit2` Permit2 address, should not affect `universal-router`
 import 'hardhat-typechain'
 import '@nomiclabs/hardhat-ethers'
-import '@matterlabs/hardhat-zksync-deploy'
 import '@matterlabs/hardhat-zksync-solc'
 import '@matterlabs/hardhat-zksync-verify'
 import '@matterlabs/hardhat-zksync-chai-matchers'
@@ -46,9 +45,6 @@ export default {
     },
   },
   defaultNetwork: 'zkSyncTestNode',
-  namedAccounts: {
-    deployer: 0,
-  },
   solidity: {
     version: '0.8.17',
   },
