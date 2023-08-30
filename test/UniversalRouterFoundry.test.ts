@@ -1,9 +1,4 @@
-import {
-  Callbacks,
-  MockERC1155,
-  MockERC20,
-  UniversalRouter
-} from '../typechain'
+import { Callbacks, MockERC1155, MockERC20, UniversalRouter } from '../typechain'
 import '@matterlabs/hardhat-zksync-chai-matchers'
 import { expandTo18DecimalsBN } from './shared/helpers'
 import { RoutePlanner, CommandType } from './shared/planner'
@@ -11,7 +6,7 @@ import { expect } from 'chai'
 import { provider } from './shared/zkSyncUtils'
 import { deployContract } from './shared/zkSyncUtils'
 import { BigNumber, ethers } from 'ethers'
-import { ETH_ADDRESS } from "./shared/constants";
+import { ETH_ADDRESS } from './shared/constants'
 
 describe('UniversalRouter Test(rewritten from foundry):', () => {
   const AMOUNT: BigNumber = expandTo18DecimalsBN(1)
@@ -43,7 +38,7 @@ describe('UniversalRouter Test(rewritten from foundry):', () => {
       v2Factory: '0x0000000000000000000000000000000000000000',
       v3Factory: '0x0000000000000000000000000000000000000000',
       pairInitCodeHash: '0x0000000000000000000000000000000000000000000000000000000000000000',
-      poolInitCodeHash: '0x0000000000000000000000000000000000000000000000000000000000000000'
+      poolInitCodeHash: '0x0000000000000000000000000000000000000000000000000000000000000000',
     }
     router = (await deployContract('UniversalRouter', [params])) as UniversalRouter
     await deployContract('ExampleModule')

@@ -33,7 +33,12 @@ const { ethers } = hre
 import { deployContract, getWallets } from './shared/zkSyncUtils'
 import { Wallet } from 'zksync-web3'
 import { abi as safeCastAbi } from '../artifacts-zk/permit2/src/libraries/SafeCast160.sol/SafeCast160.json'
-import { createPairAndMintUniswapV2, createPoolAndMintUniswapV3, isTokenOrderCorrect, computePairAddress } from "./shared/protocolHelpers/uniswap";
+import {
+  createPairAndMintUniswapV2,
+  createPoolAndMintUniswapV3,
+  isTokenOrderCorrect,
+  computePairAddress,
+} from './shared/protocolHelpers/uniswap'
 
 describe('Uniswap V2 and V3 Tests:', () => {
   let alice: Wallet
@@ -106,7 +111,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
       wethContract,
       BigNumber.from('8140529658966941313012915'),
       BigNumber.from('4430761666523311112725'),
-      FeeAmount.MEDIUM,
+      FeeAmount.MEDIUM
     )
     await createPoolAndMintUniswapV3(
       nftManager,
@@ -114,7 +119,7 @@ describe('Uniswap V2 and V3 Tests:', () => {
       usdcContract,
       BigNumber.from('60144550130643463746539502'),
       BigNumber.from('60116888330202'),
-      FeeAmount.MEDIUM,
+      FeeAmount.MEDIUM
     )
     await createPoolAndMintUniswapV3(
       nftManager,
