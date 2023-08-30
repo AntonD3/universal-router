@@ -9,7 +9,7 @@ import deployZkSyncEra from './script/deploy_zksync_era'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const ZKSYNC_TEST_NODE_URL = "http://localhost:8011"
+const ZKSYNC_TEST_NODE_URL = 'http://localhost:8011'
 // This variable is used by the hardhat-zksync-chai-matchers
 process.env.ZKSYNC_WEB3_API_URL = ZKSYNC_TEST_NODE_URL
 
@@ -49,8 +49,8 @@ export default {
     version: '0.8.17',
   },
   zksolc: {
-    version: "1.3.13",
-    compilerSource: "binary",
+    version: '1.3.13',
+    compilerSource: 'binary',
     settings: {},
   },
   mocha: {

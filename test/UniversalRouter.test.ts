@@ -36,7 +36,7 @@ describe('UniversalRouter', () => {
       ROUTER_REWARDS_DISTRIBUTOR,
       mockLooksRareToken.address,
     ])) as MockLooksRareRewardsDistributor
-    daiContract = await deployContract('MintableERC20', [18, expandTo18DecimalsBN(3000000000)]) as ERC20
+    daiContract = (await deployContract('MintableERC20', [18, expandTo18DecimalsBN(3000000000)])) as ERC20
     wethContract = await deployWeth()
     permit2 = (await deployPermit2()).connect(alice) as Permit2
     router = (
@@ -145,12 +145,10 @@ describe('UniversalRouter', () => {
 
         const { commands, inputs } = planner
 
-        await expect(
-            router['execute(bytes,bytes[],uint256)'](commands, inputs, DEADLINE)
-        )
-            .to.be.revertedWithCustomError(router, 'ExecutionFailed')
-            // unsupported protocol error
-            .withArgs(0, '0xea3559ef')
+        await expect(router['execute(bytes,bytes[],uint256)'](commands, inputs, DEADLINE))
+          .to.be.revertedWithCustomError(router, 'ExecutionFailed')
+          // unsupported protocol error
+          .withArgs(0, '0xea3559ef')
       })
 
       it('does not revert if invalid seaport transaction allowed to fail', async () => {
