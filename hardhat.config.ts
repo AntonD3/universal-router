@@ -4,6 +4,7 @@ import '@nomiclabs/hardhat-ethers'
 import '@matterlabs/hardhat-zksync-solc'
 import '@matterlabs/hardhat-zksync-verify'
 import '@matterlabs/hardhat-zksync-chai-matchers'
+import '@matterlabs/hardhat-zksync-node'
 import { task } from 'hardhat/config'
 import deployZkSyncEra from './script/deploy_zksync_era'
 import dotenv from 'dotenv'
@@ -26,9 +27,7 @@ export default {
     sources: './contracts',
   },
   networks: {
-    zkSyncTestNode: {
-      url: ZKSYNC_TEST_NODE_URL,
-      ethNetwork: '',
+    hardhat: {
       zksync: true,
     },
     zkSyncTestnet: {
@@ -50,7 +49,6 @@ export default {
       verifyURL: 'https://zksync2-mainnet-explorer.zksync.io/contract_verification',
     },
   },
-  defaultNetwork: 'zkSyncTestNode',
   solidity: {
     version: '0.8.17',
   },
